@@ -52,7 +52,7 @@ export class UsersService {
   }
 
   create(user: { name: string; email: string; role: string }) {
-    const newUserId = this.users.length;
+    const newUserId = this.users.length + 1;
 
     const newUser = {
       id: newUserId,
@@ -62,6 +62,24 @@ export class UsersService {
     this.users.push(newUser);
 
     return newUser;
+  }
+
+  update(
+    id: number,
+    updatedUser: { name?: string; email?: string; role?: string },
+  ) {
+    this.users = this.users.map((user) => {
+      if (user.id === id) {
+        return {
+          ...user,
+          ...updatedUser,
+        };
+      }
+
+      return user;
+    });
+
+    return this.findOne(id);
   }
 
   delete(id: number) {
