@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import {
   Body,
   Controller,
@@ -6,13 +7,16 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @Get()
-  findAll() {
-    return [];
+  findAll(@Query('role') role?: string) {
+    return this.usersService.findAll(role);
   }
 
   @Get(':id')
