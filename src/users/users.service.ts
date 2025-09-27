@@ -51,6 +51,19 @@ export class UsersService {
     return user;
   }
 
+  create(user: { name: string; email: string; role: string }) {
+    const newUserId = this.users.length;
+
+    const newUser = {
+      id: newUserId,
+      ...user,
+    };
+
+    this.users.push(newUser);
+
+    return newUser;
+  }
+
   delete(id: number) {
     const removedUser = this.findOne(id);
 

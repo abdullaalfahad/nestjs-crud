@@ -25,8 +25,8 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() user: {}) {
-    return user;
+  create(@Body() user: { name: string; email: string; role: string }) {
+    return this.usersService.create(user);
   }
 
   @Patch(':id')
