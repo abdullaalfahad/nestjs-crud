@@ -50,4 +50,11 @@ export class UsersService {
 
     return user;
   }
+
+  delete(id: number) {
+    const removedUser = this.findOne(id);
+
+    this.users.filter((user) => user.id === id);
+    return removedUser;
+  }
 }
