@@ -43,4 +43,11 @@ export class UsersService {
 
     return this.users;
   }
+
+  findOne(id: number) {
+    const userIndex = this.users.findIndex((user) => user.id === id);
+    const user = this.users[userIndex];
+
+    return user;
+  }
 }
